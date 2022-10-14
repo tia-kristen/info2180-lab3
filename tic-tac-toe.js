@@ -10,6 +10,10 @@ window.addEventListener('DOMContentLoaded', () => {
         // Adding squares to screen
         square.classList.add('square');
 
+        // Adding hover effect
+        square.addEventListener('mouseover', () => {square.classList.add('hover')});
+        square.addEventListener('mouseout', () => {square.classList.remove('hover');});
+
         // Alternating between X and O on each click
         square.addEventListener('click', () => changePlayerOnClick(square, index));
     });
