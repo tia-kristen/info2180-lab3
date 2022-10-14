@@ -2,11 +2,13 @@ window.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('#board');
     const squares = Array.from(container.children);
     const status = document.querySelector('#status');
+    const resetBtn = document.querySelector('.btn');
     const BOARD_LENGTH = 9;
 
     let board = [[],[]];
     let currentPlayer = 'X';
     let gameInProgress = true; // flag to keep track of whether or not game has ended
+    let originalStatus = status.innerText;
 
     // All possible combinations to win:
     const winningConditions = [
@@ -67,4 +69,18 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     } 
 
+    const resetGame = () => {
+        gameInProgress = true;
+        status.classList.remove('you-won');
+        status.innerText = originalStatus;
+        currentPlayer = 'X';
+        board = [[],[]];
+
+        squares.forEach((square)=> {
+            square.innerHTML = '';
+            square.className = 'square'; // Remove all classes except square class
+        });
+    }
+
+    resetBtn.addEventListener('click', resetGame);
 });
